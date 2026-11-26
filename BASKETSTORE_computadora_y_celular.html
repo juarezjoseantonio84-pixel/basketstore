@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BASKETSTORE | Gorras de básquet</title>
+<style>
+:root{--orange:#ff7417;--bg:#090a0c;--panel:#141619;--muted:#aeb4bd}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#090a0cf2;border-bottom:1px solid #292d32;padding:15px max(5%,calc((100% - 1200px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:1000;font-size:26px;font-style:italic;letter-spacing:-1px}.logo b{color:var(--orange)}
+nav{display:flex;gap:22px}nav a{color:#eee;text-decoration:none;font-size:13px;font-weight:bold}
+.cart{border:1px solid #454950;border-radius:20px;padding:9px 13px;background:#17191c;color:white}
+.hero{max-width:1200px;margin:auto;padding:60px 5%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;min-height:380px;background:radial-gradient(ellipse at 80% 40%,#5b270f 0,transparent 48%)}
+.kicker{color:var(--orange);letter-spacing:4px;font-weight:bold;font-size:12px}.hero h1{font-size:clamp(38px,6vw,68px);line-height:.98;margin:14px 0}.hero h1 span{color:var(--orange)}.hero p{color:#c4c8ce;line-height:1.6}.hero img{width:100%;max-height:310px;object-fit:contain;filter:drop-shadow(0 20px 25px #000)}
+.btn{display:inline-block;background:var(--orange);color:#111;text-decoration:none;border:0;border-radius:8px;padding:13px 20px;font-weight:900;cursor:pointer}
+section{max-width:1200px;margin:25px auto;padding:15px 5%}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.sectionhead h2{font-size:26px;margin:0;border-left:6px solid var(--orange);padding-left:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{background:#1a1d21;border:1px solid #3a3f46;color:#fff;padding:9px 13px;border-radius:20px;cursor:pointer}.filter.active{background:var(--orange);color:#111;border-color:var(--orange);font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--panel);border:1px solid #30343a;border-radius:12px;overflow:hidden}.portrait{height:205px;background:radial-gradient(circle at 50% 25%,#343941,#111317 70%);display:flex;align-items:center;justify-content:center;position:relative}.portrait img{height:100%;width:100%;object-fit:contain;object-position:center bottom}.tag{position:absolute;top:10px;left:10px;background:var(--orange);color:#111;padding:5px 8px;border-radius:5px;font-size:11px;font-weight:900}.info{padding:14px}.info h3{font-size:16px;margin:0 0 6px}.sub{font-size:12px;color:var(--muted);min-height:30px}.price{color:var(--orange);font-size:20px;font-weight:900;margin:12px 0}.add{width:100%;background:var(--orange);border:0;border-radius:7px;padding:10px;font-weight:900;cursor:pointer}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-top:1px solid #30343a;border-bottom:1px solid #30343a;padding:24px 5%;max-width:1200px;margin:40px auto}.feature{text-align:center;color:#dce0e5;font-size:13px}.feature strong{display:block;color:var(--orange);font-size:15px;margin-bottom:6px}
+footer{text-align:center;padding:30px;color:#aeb4bd;font-size:12px}footer b{color:var(--orange)}
+.cartbox{position:fixed;right:18px;bottom:18px;background:#191c20;border:1px solid #444a52;border-radius:12px;padding:16px;width:min(340px,calc(100% - 36px));z-index:8;box-shadow:0 10px 40px #000b;display:none}.cartbox.show{display:block}.cartbox h3{margin:0 0 12px}.cartline{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #343940;font-size:13px}.remove{background:none;color:#ff9a59;border:0;cursor:pointer}.total{font-weight:bold;color:var(--orange);font-size:20px;margin:14px 0}
+/* Diseño adaptable para computadora, tablet y celular */
+@media (max-width: 900px) {
+  header { padding-left: 4%; padding-right: 4%; flex-wrap: wrap; }
+  nav { gap: 12px; flex-wrap: wrap; justify-content: center; }
+  nav a { font-size: 12px; }
+  .hero { grid-template-columns: 1fr 1fr; padding-top: 42px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .features { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  header { position: relative; justify-content: space-between; gap: 10px; padding: 12px 4%; }
+  .logo { font-size: 20px; }
+  nav { order: 3; width: 100%; gap: 8px 14px; justify-content: center; }
+  nav a { display: inline-block !important; font-size: 11px; padding: 4px 0; }
+  .cart { padding: 8px 11px; }
+  .hero { grid-template-columns: 1fr; text-align: center; padding: 35px 5%; gap: 18px; }
+  .hero h1 { font-size: clamp(34px, 10vw, 48px); }
+  .hero img { max-height: 190px; }
+  section { padding-left: 4%; padding-right: 4%; }
+  .sectionhead { align-items: flex-start; flex-direction: column; }
+  .sectionhead h2 { font-size: 23px; }
+  .filters { width: 100%; }
+  .filter { padding: 8px 10px; font-size: 12px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .portrait { height: 145px; }
+  .info { padding: 10px; }
+  .info h3 { font-size: 13px; }
+  .sub { font-size: 11px; }
+  .price { font-size: 17px; }
+  .add { font-size: 11px; padding: 10px 6px; }
+  .features { padding: 20px 4%; gap: 14px 8px; }
+  .feature { font-size: 11px; }
+  .feature strong { font-size: 13px; }
+  .info-section { padding: 38px 4%; }
+  .info-grid { grid-template-columns: 1fr; }
+  .payment-grid { grid-template-columns: 1fr; }
+  .cartbox { right: 10px; bottom: 10px; width: calc(100% - 20px); max-height: 75vh; overflow-y: auto; }
+}
+@media (max-width: 360px) {
+  .grid { grid-template-columns: 1fr; }
+  .portrait { height: 190px; }
+  nav { gap: 6px 10px; }
+  nav a { font-size: 10px; }
+}
+
+/* Edición de diseño: campeón en dorado y negro; gorras blancas */
+.card.champion{background:linear-gradient(160deg,#17140b,#080808);border:2px solid #c9a64a;box-shadow:0 0 18px #c9a64a35}
+.card.champion .portrait{background:radial-gradient(circle at 50% 25%,#6e5923,#090909 72%)}
+.card.champion .tag{background:#d4b45d;color:#090909}
+.card.champion .info h3,.card.champion .price{color:#e3c66f}
+.card:not(.champion) .portrait:after{content:"GORRA BLANCA";position:absolute;bottom:9px;right:9px;background:#f5f5f2;color:#171717;border-radius:5px;padding:5px 7px;font-size:9px;font-weight:900;letter-spacing:.5px}
+.card.champion .portrait:after{content:"GORRA BLANCA · EDICIÓN CAMPEÓN";position:absolute;bottom:9px;right:9px;background:#f5f5f2;color:#171717;border-radius:5px;padding:5px 7px;font-size:9px;font-weight:900;letter-spacing:.3px}
+
+
+.info-section{padding:56px 5%;background:#111;color:#fff}
+.info-section .section-heading{text-align:center;margin:0 auto 28px;max-width:680px}
+.info-section .eyebrow{color:#f5a623;font-weight:800;letter-spacing:2px;font-size:.75rem}
+.info-section h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:8px 0}
+.info-section .section-heading>p:last-child{color:#bbb}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1100px;margin:auto}
+.info-card{background:#1c1c1c;border:1px solid #383838;border-radius:14px;padding:20px}
+.info-card h3{color:#f5a623;font-size:1rem;margin:0 0 9px}
+.info-card p{color:#ddd;line-height:1.5;margin:0}
+
+
+.payment-section{max-width:1200px;margin:25px auto;padding:20px 5%}
+.payment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.payment-card{background:#141619;border:1px solid #30343a;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.payment-card span{font-size:26px}
+.payment-card strong{color:var(--orange)}
+.payment-card small{color:var(--muted);line-height:1.5}
+@media(max-width:600px){.payment-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">🏀 BASKET<b>STORE</b></div>
+ <nav><a href="#inicio">INICIO</a><a href="#actuales">JUGADORES</a><a href="#mvp">MVP</a><a href="#leyendas">LEYENDAS</a>
+<a href="#info">Info</a><a href="#pagos">Pagos</a>
+</nav>
+ <button class="cart" onclick="toggleCart()">🛒 <span id="count">0</span></button>
+</header>
+<main id="inicio">
+ <div class="hero">
+  <div><div class="kicker">BASKETSTORE · GORRAS DE BÁSQUET</div><h1>GORRAS DE<br>JUGADORES,<br><span>MVP Y LEYENDAS</span></h1><p>Llevá la historia del básquet en tu estilo. Elegí a tu jugador favorito y encontrá tu próxima gorra.</p><a class="btn" href="#catalogo">VER CATÁLOGO　→</a></div>
+  <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/893.png" alt="Michael Jordan">
+ </div>
+ <section id="catalogo">
+  <div class="sectionhead"><h2>CATÁLOGO</h2><div class="filters"><button class="filter active" onclick="filter('all',this)">Todos</button><button class="filter" onclick="filter('actual',this)">Actuales</button><button class="filter" onclick="filter('mvp',this)">MVP</button><button class="filter" onclick="filter('legend',this)">Leyendas</button></div></div>
+  <div class="grid" id="products">
+   <article class="card champion" data-cat="actual mvp"><div class="portrait"><span class="tag">CAMPEÓN · MVP</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/1628983.png" alt="Shai Gilgeous-Alexander"></div><div class="info"><h3>Shai Gilgeous-Alexander</h3><div class="sub">MVP · Oklahoma City</div><div class="price">$24.990</div><button class="add" onclick="add('Gorra Shai Gilgeous-Alexander',24990)">AGREGAR AL CARRITO</button></div></article>
+   <article class="card" data-cat="actual mvp"><div class="portrait"><span class="tag">MVP</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/203999.png" alt="Nikola Jokic"></div><div class="info"><h3>Nikola Jokić</h3><div class="sub">MVP · Denver Nuggets</div><div class="price">$24.990</div><button class="add" onclick="add('Gorra Nikola Jokic',24990)">AGREGAR AL CARRITO</button></div></article>
+   <article class="card" data-cat="actual"><div class="portrait"><span class="tag">ESTRELLA</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/1641705.png" alt="Victor Wembanyama"></div><div class="info"><h3>Victor Wembanyama</h3><div class="sub">San Antonio Spurs</div><div class="price">$22.990</div><button class="add" onclick="add('Gorra Victor Wembanyama',22990)">AGREGAR AL CARRITO</button></div></article>
+   <article class="card" data-cat="actual mvp"><div class="portrait"><span class="tag">MVP</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png" alt="Stephen Curry"></div><div class="info"><h3>Stephen Curry</h3><div class="sub">Campeón · Golden State</div><div class="price">$24.990</div><button class="add" onclick="add('Gorra Stephen Curry',24990)">AGREGAR AL CARRITO</button></div></article>
+   <article class="card" data-cat="legend"><div class="portrait"><span class="tag">6 ANILLOS</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/893.png" alt="Michael Jordan"></div><div class="info"><h3>Michael Jordan</h3><div class="sub">6 anillos · 6 veces MVP</div><div class="price">$26.990</div><button class="add" onclick="add('Gorra Michael Jordan',26990)">AGREGAR AL CARRITO</button></div></article>
+   <article class="card" data-cat="legend"><div class="portrait"><span class="tag">5 ANILLOS</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/977.png" alt="Kobe Bryant"></div><div class="info"><h3>Kobe Bryant</h3><div class="sub">5 anillos · 2 veces MVP</div><div class="price">$26.990</div><button class="add" onclick="add('Gorra Kobe Bryant',26990)">AGREGAR AL CARRITO</button></div></article>
+   <article class="card" data-cat="legend"><div class="portrait"><span class="tag">4 ANILLOS</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/1938.png" alt="Manu Ginóbili"></div><div class="info"><h3>Manu Ginóbili</h3><div class="sub">4 anillos · Leyenda argentina</div><div class="price">$26.990</div><button class="add" onclick="add('Gorra Manu Ginobili',26990)">AGREGAR AL CARRITO</button></div></article>
+   <article class="card" data-cat="legend"><div class="portrait"><span class="tag">4 ANILLOS</span><img src="https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png" alt="LeBron James"></div><div class="info"><h3>LeBron James</h3><div class="sub">4 anillos · 4 veces MVP</div><div class="price">$26.990</div><button class="add" onclick="add('Gorra LeBron James',26990)">AGREGAR AL CARRITO</button></div></article>
+  </div>
+ </section>
+ <div class="features"><div class="feature"><strong>🚚 ENVÍOS</strong>A todo el país</div><div class="feature"><strong>🔒 COMPRA SEGURA</strong>Atención personalizada</div><div class="feature"><strong>💳 PAGOS</strong>Varias opciones</div><div class="feature"><strong>🏆 CALIDAD</strong>Estilo premium</div></div>
+</main>
+
+<section id="info" class="info-section">
+  <div class="section-heading">
+    <p class="eyebrow">CONOCÉ BASKETSTORE</p>
+    <h2>Información del emprendimiento</h2>
+    <p>Todo sobre nuestras gorras inspiradas en el mundo del básquet.</p>
+  </div>
+  <div class="info-grid">
+    <article class="info-card"><h3>¿Qué vendo?</h3><p>Gorras de básquet inspiradas en jugadores de la NBA.</p></article>
+    <article class="info-card"><h3>¿Para quién?</h3><p>Para fanáticos del básquet y de la NBA.</p></article>
+    <article class="info-card"><h3>¿Qué necesidad atiendo?</h3><p>Ofrezco gorras para mostrar su pasión por el básquet.</p></article>
+    <article class="info-card"><h3>¿Por qué deberían elegirme?</h3><p>Por mis diseños, variedad y estilo deportivo.</p></article>
+    <article class="info-card"><h3>¿Cómo lo produzco?</h3><p>Compro gorras blancas y les agrego diseños personalizados.</p></article>
+    <article class="info-card"><h3>¿Cuánto me cuesta?</h3><p>Depende del costo de las gorras y los materiales de personalización.</p></article>
+    <article class="info-card"><h3>¿A qué precio lo vendo?</h3><p>A un precio que cubra los gastos y deje una ganancia.</p></article>
+    <article class="info-card"><h3>¿Cómo lo presento?</h3><p>En una página web llamada BASKETSTORE, con imágenes y precios.</p></article>
+    <article class="info-card"><h3>¿Cómo lo comunico?</h3><p>Por redes sociales y publicaciones en internet.</p></article>
+    <article class="info-card"><h3>¿Qué tecnología necesito?</h3><p>Un celular o computadora, internet, una página web y herramientas de diseño.</p></article>
+  </div>
+</section>
+
+<footer><div class="logo">BASKET<b>STORE</b></div><p>GRANDES JUGADORES. GRANDES HISTORIAS.</p><p>Catálogo de demostración · Precios ilustrativos</p></footer>
+<div class="cartbox" id="cartbox"><h3>🛒 Tu carrito <button class="remove" style="float:right" onclick="toggleCart()">Cerrar ✕</button></h3><div id="lines">Todavía no agregaste productos.</div><div class="total" id="total">Total: $0</div>
+<label for="payment" style="display:block;font-size:13px;font-weight:bold;margin:12px 0 7px">💳 Método de pago</label>
+<select id="payment" style="width:100%;padding:11px;border-radius:7px;background:#24282d;color:#fff;border:1px solid #555;margin-bottom:12px">
+<option value="Mercado Pago">Mercado Pago</option>
+<option value="Transferencia bancaria">Transferencia bancaria</option>
+<option value="Efectivo">Efectivo</option>
+</select>
+<button class="add" onclick="checkout()">COPIAR PEDIDO</button></div>
+<script>
+let cart=[];
+function add(name,price){cart.push({name,price});document.getElementById('count').textContent=cart.length;renderCart();document.getElementById('cartbox').classList.add('show')}
+function renderCart(){let lines=document.getElementById('lines');lines.innerHTML='';let total=0;if(!cart.length)lines.textContent='Todavía no agregaste productos.';cart.forEach((p,i)=>{total+=p.price;let d=document.createElement('div');d.className='cartline';d.innerHTML='<span>'+p.name+'</span><span>$'+p.price.toLocaleString('es-AR')+' <button class="remove" onclick="removeItem('+i+')">✕</button></span>';lines.appendChild(d)});document.getElementById('total').textContent='Total: $'+total.toLocaleString('es-AR')}
+function removeItem(i){cart.splice(i,1);document.getElementById('count').textContent=cart.length;renderCart()}
+function toggleCart(){document.getElementById('cartbox').classList.toggle('show')}
+function filter(cat,el){document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.card').forEach(c=>c.style.display=cat==='all'||c.dataset.cat.split(' ').includes(cat)?'':'none')}
+function checkout(){if(!cart.length){alert('Agregá una gorra primero.');return}let t=cart.reduce((s,p)=>s+p.price,0);let payment=document.getElementById('payment').value;let msg='Pedido BASKETSTORE%0A'+cart.map(p=>p.name+' - $'+p.price).join('%0A')+'%0ATotal: $'+t+'%0AMétodo de pago: '+payment;let a=document.createElement('textarea');a.value=decodeURIComponent(msg);document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();alert('¡Pedido copiado! Ya podés enviarlo por WhatsApp o mensaje.')}
+</script>
+</body></html>
